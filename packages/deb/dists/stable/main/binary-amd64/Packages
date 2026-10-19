@@ -1,0 +1,20 @@
+Package: linx
+Version: 0.1.9-1
+Architecture: amd64
+Maintainer: DreadedZombie <joenilan+dev@gmail.com>
+Depends: libc6 (>= 2.39), libgcc-s1 (>= 4.2), libpipewire-0.3-0t64 (>= 0.3.8), libusb-1.0-0 (>= 2:1.0.27~rc1), libx11-6, libxcb1 (>= 1.12), libxkbcommon-x11-0 (>= 0.5.0), libxkbcommon0 (>= 0.5.0), libvulkan1, libwayland-client0, libwayland-egl1, pipewire (>= 1.0), wireplumber
+Recommends: mesa-vulkan-drivers
+Section: sound
+Priority: optional
+Homepage: https://github.com/joenilan/beacn-link-linux
+Description: Unofficial BEACN Link app for Linux
+ LinX gives a Linux gaming PC BEACN Studio's four Link channels:
+ applications play to "LinX Link Out" .. "LinX Link 4 Out", the Studio's
+ return pairs arrive as "LinX Link In" .. "LinX Link 4 In", and BEACN App on
+ the Windows streaming PC sees each application and can move it.
+ Unofficial; not affiliated with BEACN.
+Filename: pool/main/l/linx/linx_0.1.9-1_amd64.deb
+Size: 14370612
+MD5sum: 6b12eb51947ae7a6f81c99af9c855f58
+SHA1: ffb57093d926504b5f028934d8c97790bbde8d74
+SHA256: 01b03518745d13dc3d1e9e614b4cef3a627fc985c7ee952a176c8144176b8999

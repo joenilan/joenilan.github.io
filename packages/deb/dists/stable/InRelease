@@ -1,0 +1,24 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Origin: joenilan apps
+Label: joenilan apps
+Suite: stable
+Codename: stable
+Architectures: amd64
+Components: main
+Description: Apps by joenilan (DreadedZombie)
+Date: Mon, 19 Oct 2026 12:22:33 UTC
+MD5Sum:
+ cacc15a511b91ba40a0029ea4681b35c 1095 main/binary-amd64/Packages
+ a845e6c7682f183938fff3c1a9413b9d 690 main/binary-amd64/Packages.gz
+SHA256:
+ bf2702f01d517940c509e905dec2c203aeb4bc31b15230f6ebfb510509b821ba 1095 main/binary-amd64/Packages
+ 81b3b1260dfac4e347898feff33970dbe3a5b4082e67b9b106f90a3b89e67af0 690 main/binary-amd64/Packages.gz
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQTnLW7pxBcBLs4oASThS4eAdiHSXQUCatYLiQAKCRDhS4eAdiHS
+XWQVAP4uo6HKlnAICkYtLUK7/o24/b2y85yxdAp/iIFXb6OZRwEArLY1pf9ZJpAY
+adgvgpM5BioGUhyJ7b/RwQWt5rPRqAY=
+=D5iP
+-----END PGP SIGNATURE-----

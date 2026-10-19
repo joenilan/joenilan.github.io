@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>joenilan · apps</title>
+<meta name="description" content="Apps by joenilan (DreadedZombie): LinX, Jawjack, Haiwire, Slotshift and more, with signed Linux package repositories.">
+<style>
+  :root {
+    --bg: #f6f7f9; --panel: #ffffff; --text: #16191d; --muted: #5b6470;
+    --line: #dde1e6; --accent: #2f7d5b; --accent-soft: #e3f1ea; --code: #eef0f3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111316; --panel: #191c20; --text: #e6e8eb; --muted: #9aa3ad;
+      --line: #2a2f35; --accent: #5cc595; --accent-soft: #1d3329; --code: #22262b;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 960px; margin: 0 auto; padding: 48px 16px 64px; }
+  header h1 { font-size: 2rem; margin: 0 0 4px; letter-spacing: -0.02em; }
+  header p { margin: 0; color: var(--muted); }
+  h2 { font-size: 1.15rem; margin: 48px 0 16px; }
+  a { color: var(--accent); }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  .card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .card h3 { margin: 0; font-size: 1.1rem; }
+  .card p { margin: 0; color: var(--muted); flex: 1; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 0.75rem; padding: 2px 8px; border-radius: 999px;
+    background: var(--code); color: var(--muted);
+  }
+  .tag.open { background: var(--accent-soft); color: var(--accent); }
+  .links { display: flex; flex-wrap: wrap; gap: 14px; font-size: 0.95rem; }
+  pre {
+    background: var(--code); border-radius: 8px; padding: 12px 14px;
+    overflow-x: auto; font-size: 0.85rem; margin: 8px 0 0;
+  }
+  code { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; }
+  .note { color: var(--muted); font-size: 0.9rem; }
+  footer { margin-top: 56px; color: var(--muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>joenilan</h1>
+    <p>Apps by DreadedZombie. Downloads also on <a href="https://apps.zombie.digital/apps">Zombie Digital Apps</a>.</p>
+  </header>
+
+  <h2>Apps</h2>
+  <div class="grid">
+    <article class="card">
+      <h3>LinX</h3>
+      <div class="tags"><span class="tag">Linux</span><span class="tag open">Open source</span></div>
+      <p>Unofficial BEACN Link app for Linux: send applications to BEACN Studio's Link channels from a Linux gaming PC. Not affiliated with BEACN.</p>
+      <div class="links">
+        <a href="https://github.com/joenilan/beacn-link-linux">GitHub</a>
+        <a href="https://github.com/joenilan/beacn-link-linux/releases">Releases</a>
+        <a href="#packages">dnf / apt</a>
+      </div>
+    </article>
+    <article class="card">
+      <h3>Jawjack</h3>
+      <div class="tags"><span class="tag">Windows</span><span class="tag">Linux</span></div>
+      <p>A native chat client for streamers, moderators and viewers, covering Twitch and YouTube live chat.</p>
+      <div class="links"><a href="https://apps.zombie.digital/jawjack">Download</a></div>
+    </article>
+    <article class="card">
+      <h3>Haiwire</h3>
+      <div class="tags"><span class="tag">Windows</span><span class="tag">Linux</span></div>
+      <p>A native terminal and AI coding workspace, built around your projects.</p>
+      <div class="links"><a href="https://apps.zombie.digital/haiwire">Download</a></div>
+    </article>
+    <article class="card">
+      <h3>Slotshift</h3>
+      <div class="tags"><span class="tag open">Open source</span></div>
+      <p>Native GPU-rendered Codex account launcher. Separate accounts, saved launch preferences, zero proxy infrastructure.</p>
+      <div class="links">
+        <a href="https://github.com/joenilan/slotshift">GitHub</a>
+        <a href="https://github.com/joenilan/slotshift/releases">Releases</a>
+      </div>
+    </article>
+    <article class="card">
+      <h3>Deadlink</h3>
+      <div class="tags"><span class="tag">In development</span></div>
+      <p>Private, self-hosted access to your local files from AI chat, through its own plugin and tunnel.</p>
+    </article>
+  </div>
+
+  <h2 id="packages">Linux package repository</h2>
+  <p>One signed repository for all of these apps: install once, then your system's normal updates
+  (<code>dnf upgrade</code>, <code>apt upgrade</code>, Discover, GNOME Software) keep them current.
+  Available now: <strong>LinX</strong>. Jawjack and Haiwire are coming.</p>
+  <p class="note">Signing key fingerprint: <code>E72D 6EE9 C417 012E CE28 0124 E14B 8780 7621 D25D</code></p>
+  <h3>Fedora</h3>
+  <pre><code>sudo dnf config-manager addrepo --from-repofile=https://joenilan.github.io/packages/joenilan-apps.repo
+sudo dnf install linx</code></pre>
+  <h3>Debian 13 / Ubuntu</h3>
+  <pre><code>sudo curl -fsSLo /usr/share/keyrings/joenilan-apps-archive-keyring.gpg https://joenilan.github.io/packages/joenilan-apps.gpg
+sudo curl -fsSLo /etc/apt/sources.list.d/joenilan-apps.sources https://joenilan.github.io/packages/joenilan-apps.sources
+sudo apt update
+sudo apt install linx</code></pre>
+
+  <footer>© joenilan · <a href="https://github.com/joenilan">github.com/joenilan</a> · <a href="https://zombie.digital">zombie.digital</a></footer>
+</main>
+</body>
+</html>

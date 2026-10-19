@@ -1,0 +1,7 @@
+[joenilan-apps]
+name=joenilan apps
+baseurl=https://joenilan.github.io/packages/rpm
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://joenilan.github.io/packages/joenilan-apps.asc

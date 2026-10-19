@@ -70,26 +70,59 @@ for f in "${FILES[@]}"; do
   esac
 done
 
-# Keep the newest KEEP versions of each package.
+# Keep the newest KEEP versions of each package, ordered the way dnf, apt and
+# pacman order them: 0.1.0~preview.30 (RPM/deb) and 0.1.0preview.30 (Arch) sort
+# before 0.1.0, so a final release is never pruned in favour of its previews.
 python3 -I - "$REPO" "$KEEP" <<'EOF'
-import os, re, sys
+import functools, os, re, sys
 repo, keep = sys.argv[1], int(sys.argv[2])
-def vkey(v):
-    return [int(p) if p.isdigit() else p for p in re.split(r"[.\-~+_]", v)]
+
+def vercmp(a, b, pacman=False):
+    """rpmvercmp (tilde sorts first); pacman=True: vercmp (trailing letters sort
+    first, tilde is a plain separator)."""
+    separators = r"^[^A-Za-z0-9]+" if pacman else r"^[^A-Za-z0-9~]+"
+    while (a and b) if pacman else (a or b):
+        a = re.sub(separators, "", a)
+        b = re.sub(separators, "", b)
+        if a.startswith("~") or b.startswith("~"):
+            if not (a.startswith("~") and b.startswith("~")):
+                return -1 if a.startswith("~") else 1
+            a, b = a[1:], b[1:]
+            continue
+        if not a or not b:
+            break
+        pattern = r"^\d+" if a[0].isdigit() else r"^[A-Za-z]+"
+        x, y = re.match(pattern, a), re.match(pattern, b)
+        if not y:
+            return 1 if a[0].isdigit() else -1
+        a, b = a[x.end():], b[y.end():]
+        x, y = x.group(), y.group()
+        if x[0].isdigit():
+            x, y = int(x), int(y)
+        if x != y:
+            return -1 if x < y else 1
+    if not a and not b:
+        return 0
+    if pacman:
+        return -1 if (not a and not b[0].isalpha()) or a[:1].isalpha() else 1
+    return 1 if a else -1
+
+def full_cmp(pacman):
+    def cmp(x, y):  # "version-release"
+        (xv, _, xr), (yv, _, yr) = x[0].rpartition("-"), y[0].rpartition("-")
+        return vercmp(xv, yv, pacman) or vercmp(xr, yr, pacman)
+    return cmp
+
 groups = {}
 for dirpath, _, files in os.walk(repo):
     for f in files:
-        m = re.match(r"(.+?)-(\d[^-]*)-[^-]+\.\w+\.rpm$", f) if f.endswith(".rpm") else \
+        m = re.match(r"(.+?)-(\d[^-]*-[^-]+)\.\w+\.rpm$", f) if f.endswith(".rpm") else \
             re.match(r"([^_]+)_([^_]+)_\w+\.deb$", f) if f.endswith(".deb") else \
             re.match(r"(.+)-([^-]+-[^-]+)-\w+\.pkg\.tar\.zst$", f) if f.endswith(".pkg.tar.zst") else None
         if m:
-            groups.setdefault((dirpath, m[1]), []).append((vkey(m[2]), f))
+            groups.setdefault((dirpath, m[1]), []).append((m[2], f))
 for (dirpath, name), items in groups.items():
-    items.sort(key=lambda i: str(i[0]))
-    try:
-        items.sort(key=lambda i: i[0])
-    except TypeError:
-        pass
+    items.sort(key=functools.cmp_to_key(full_cmp(items[0][1].endswith(".pkg.tar.zst"))))
     for _, f in items[:-keep]:
         for path in (os.path.join(dirpath, f), os.path.join(dirpath, f + ".sig")):
             if os.path.exists(path):

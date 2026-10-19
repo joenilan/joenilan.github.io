@@ -17,6 +17,12 @@
 #
 # Usage: scripts/publish-packages.sh [--no-push] [package.rpm|.deb|.pkg.tar.zst ...]
 #   With no packages, only regenerates and re-signs the metadata.
+#   After pushing, the apps.zombie.digital mirror is refreshed with
+#   scripts/mirror-packages.py using MIRROR_ENV_FILE (default
+#   ~/git/zombie-digital/.env.raspi); set MIRROR_ENV_FILE= to skip it.
+#
+# Each app's own publish step calls this script (LinX: packaging/
+# publish-repo.sh; Jawjack and Haiwire: scripts/Publish-Linux.py --publish).
 set -euo pipefail
 
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
@@ -231,3 +237,8 @@ fi
 [ "$PUSH" = 1 ] || exit 0
 git push -q origin HEAD
 echo "publish-packages: pushed; $BASE_URL/"
+MIRROR_ENV_FILE=${MIRROR_ENV_FILE-$HOME/git/zombie-digital/.env.raspi}
+if [ -n "$MIRROR_ENV_FILE" ]; then
+  python3 "$ROOT/scripts/mirror-packages.py" --env-file "$MIRROR_ENV_FILE"
+  echo "publish-packages: mirrored; $MIRROR_URL/"
+fi

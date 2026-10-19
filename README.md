@@ -17,3 +17,24 @@ repository, served by GitHub Pages at https://joenilan.github.io/.
 scripts/publish-packages.sh path/to/app-1.2.3-1.fc44.x86_64.rpm path/to/app_1.2.3-1_amd64.deb path/to/app-1.2.3-1-x86_64.pkg.tar.zst
 scripts/mirror-packages.py --env-file ~/git/zombie-digital/.env.raspi
 ```
+
+## How an app publishes here
+
+Every app's own publish step ends by calling, from this checkout
+(`~/git/joenilan.github.io`, or `$JOENILAN_SITE`):
+
+```sh
+scripts/publish-packages.sh <app>.rpm <app>.deb <app>.pkg.tar.zst
+```
+
+That signs what needs signing (RPMs, Arch packages, all repository metadata;
+gpg-agent asks for the key's passphrase), keeps the newest three versions,
+commits and pushes this site, and mirrors `packages/` to apps.zombie.digital.
+Wired in today: LinX (`packaging/publish-repo.sh`), Jawjack and Haiwire
+(`scripts/Publish-Linux.py --publish`).
+
+Package conventions: install to `/usr`, desktop file named after the app ID,
+`License:` set (closed-source apps use `LicenseRef-Proprietary`), versions with
+a pre-release use `~` (`0.1.0~preview.30`) so the final release sorts above
+them, and the app's updater must not self-update a copy installed under
+`/usr` (it tells the user to update with their package manager).

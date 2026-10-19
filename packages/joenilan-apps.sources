@@ -1,5 +1,5 @@
 Types: deb
-URIs: https://joenilan.github.io/packages/deb
+URIs: https://joenilan.github.io/packages/deb https://apps.zombie.digital/downloads/packages/deb
 Suites: stable
 Components: main
 Architectures: amd64

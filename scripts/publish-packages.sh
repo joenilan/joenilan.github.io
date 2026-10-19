@@ -4,14 +4,18 @@
 #
 #   packages/rpm/   RPM repository: signed packages, repodata + repomd.xml.asc
 #   packages/deb/   apt repository: pool/ and dists/stable (InRelease, Release.gpg)
-#   packages/joenilan-apps.{asc,gpg,repo,sources}: key and repository files
+#   packages/arch/x86_64/  pacman repository: signed packages and joenilan-apps.db
+#   packages/joenilan-apps.{asc,gpg,repo,sources,pacman.conf}: key and repository files
 #
-# RPMs must already be signed with the key (each project's release script does
-# that); .deb packages are covered by the signed apt metadata. The newest KEEP
+# Unsigned RPMs are signed here (rpmsign); Arch packages get detached .sig
+# files; .deb packages are covered by the signed apt metadata. The pacman
+# database is built with repo-add in an archlinux container (podman). The newest KEEP
 # versions of each package stay. Signing asks for the key's passphrase through
-# gpg-agent. Served by GitHub Pages at https://joenilan.github.io/packages/.
+# gpg-agent. Served by GitHub Pages at https://joenilan.github.io/packages/ and
+# mirrored to https://apps.zombie.digital/downloads/packages/ by
+# scripts/mirror-packages.py; the repository files list both.
 #
-# Usage: scripts/publish-packages.sh [--no-push] [package.rpm|package.deb ...]
+# Usage: scripts/publish-packages.sh [--no-push] [package.rpm|.deb|.pkg.tar.zst ...]
 #   With no packages, only regenerates and re-signs the metadata.
 set -euo pipefail
 
@@ -19,13 +23,14 @@ ROOT=$(cd "$(dirname "$0")/.." && pwd)
 REPO="$ROOT/packages"
 KEY=${PACKAGES_SIGNING_KEY:-E72D6EE9C417012ECE280124E14B87807621D25D}
 BASE_URL=https://joenilan.github.io/packages
+MIRROR_URL=https://apps.zombie.digital/downloads/packages
 KEEP=3
 PUSH=1
 FILES=()
 for arg in "$@"; do
   case "$arg" in
     --no-push) PUSH=0 ;;
-    *.rpm|*.deb) FILES+=("$(realpath "$arg")") ;;
+    *.rpm|*.deb|*.pkg.tar.zst) FILES+=("$(realpath "$arg")") ;;
     *) echo "Unknown argument: $arg" >&2; exit 2 ;;
   esac
 done
@@ -34,14 +39,22 @@ die() { echo "publish-packages: $*" >&2; exit 1; }
 command -v createrepo_c >/dev/null || die "createrepo_c is not installed (sudo dnf install createrepo_c)"
 gpg --list-secret-keys "$KEY" >/dev/null 2>&1 || die "signing key $KEY is not available"
 
-mkdir -p "$REPO/rpm" "$REPO/deb/pool/main"
+mkdir -p "$REPO/rpm" "$REPO/deb/pool/main" "$REPO/arch/x86_64"
 for f in "${FILES[@]}"; do
   [ -f "$f" ] || die "no such file: $f"
   case "$f" in
     *.rpm)
-      rpm -qp --qf '%{SIGPGP:pgpsig}%{RSAHEADER:pgpsig}%{OPENPGP:pgpsig}\n' "$f" 2>/dev/null \
-        | grep -qi "${KEY: -16}" || die "$f is not signed with $KEY"
       cp "$f" "$REPO/rpm/"
+      dest="$REPO/rpm/$(basename "$f")"
+      if ! rpm -qp --qf '%{SIGPGP:pgpsig}%{RSAHEADER:pgpsig}%{OPENPGP:pgpsig}\n' "$dest" 2>/dev/null \
+          | grep -qi "${KEY: -16}"; then
+        rpmsign --addsign --define "_gpg_name $KEY" "$dest" >/dev/null
+      fi
+      ;;
+    *.pkg.tar.zst)
+      cp "$f" "$REPO/arch/x86_64/"
+      dest="$REPO/arch/x86_64/$(basename "$f")"
+      gpg --batch --yes -u "$KEY" --detach-sign -o "$dest.sig" "$dest"
       ;;
     *.deb)
       name=$(basename "$f"); name=${name%%_*}
@@ -61,7 +74,8 @@ groups = {}
 for dirpath, _, files in os.walk(repo):
     for f in files:
         m = re.match(r"(.+?)-(\d[^-]*)-[^-]+\.\w+\.rpm$", f) if f.endswith(".rpm") else \
-            re.match(r"([^_]+)_([^_]+)_\w+\.deb$", f) if f.endswith(".deb") else None
+            re.match(r"([^_]+)_([^_]+)_\w+\.deb$", f) if f.endswith(".deb") else \
+            re.match(r"(.+)-([^-]+-[^-]+)-\w+\.pkg\.tar\.zst$", f) if f.endswith(".pkg.tar.zst") else None
         if m:
             groups.setdefault((dirpath, m[1]), []).append((vkey(m[2]), f))
 for (dirpath, name), items in groups.items():
@@ -71,7 +85,9 @@ for (dirpath, name), items in groups.items():
     except TypeError:
         pass
     for _, f in items[:-keep]:
-        os.remove(os.path.join(dirpath, f))
+        for path in (os.path.join(dirpath, f), os.path.join(dirpath, f + ".sig")):
+            if os.path.exists(path):
+                os.remove(path)
         print(f"pruned {f}")
 EOF
 
@@ -83,14 +99,16 @@ cat > "$REPO/joenilan-apps.repo" <<EOF
 [joenilan-apps]
 name=joenilan apps
 baseurl=$BASE_URL/rpm
+        $MIRROR_URL/rpm
 enabled=1
 gpgcheck=1
 repo_gpgcheck=1
 gpgkey=$BASE_URL/joenilan-apps.asc
+       $MIRROR_URL/joenilan-apps.asc
 EOF
 cat > "$REPO/joenilan-apps.sources" <<EOF
 Types: deb
-URIs: $BASE_URL/deb
+URIs: $BASE_URL/deb $MIRROR_URL/deb
 Suites: stable
 Components: main
 Architectures: amd64
@@ -178,6 +196,29 @@ print(f"apt: {len(stanzas)} package(s)")
 EOF
 gpg --batch --yes -u "$KEY" --clearsign -o "$REPO/deb/dists/stable/InRelease" "$REPO/deb/dists/stable/Release"
 gpg --batch --yes -u "$KEY" --detach-sign --armor -o "$REPO/deb/dists/stable/Release.gpg" "$REPO/deb/dists/stable/Release"
+
+# ---- pacman repository ---------------------------------------------------------
+cat > "$REPO/joenilan-apps.pacman.conf" <<EOF
+[joenilan-apps]
+SigLevel = Required
+Server = $BASE_URL/arch/\$arch
+Server = $MIRROR_URL/arch/\$arch
+EOF
+ARCH_DIR="$REPO/arch/x86_64"
+rm -f "$ARCH_DIR"/joenilan-apps.{db,files}*
+if compgen -G "$ARCH_DIR/*.pkg.tar.zst" >/dev/null; then
+  podman run --rm --security-opt label=disable -v "$ARCH_DIR":/repo docker.io/library/archlinux:latest \
+    bash -c 'repo-add -q /repo/joenilan-apps.db.tar.gz /repo/*.pkg.tar.zst'
+  # Plain copies instead of repo-add's symlinks (served as files everywhere).
+  for name in db files; do
+    rm -f "$ARCH_DIR/joenilan-apps.$name"
+    cp "$ARCH_DIR/joenilan-apps.$name.tar.gz" "$ARCH_DIR/joenilan-apps.$name"
+    for f in "$ARCH_DIR/joenilan-apps.$name" "$ARCH_DIR/joenilan-apps.$name.tar.gz"; do
+      gpg --batch --yes -u "$KEY" --detach-sign -o "$f.sig" "$f"
+    done
+  done
+  rm -f "$ARCH_DIR"/*.old "$ARCH_DIR"/*.old.sig
+fi
 
 cd "$ROOT"
 git add -A

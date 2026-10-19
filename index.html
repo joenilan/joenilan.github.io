@@ -98,7 +98,7 @@
 
   <h2 id="packages">Linux package repository</h2>
   <p>One signed repository for all of these apps: install once, then your system's normal updates
-  (<code>dnf upgrade</code>, <code>apt upgrade</code>, Discover, GNOME Software) keep them current.
+  (<code>dnf upgrade</code>, <code>apt upgrade</code>, <code>pacman -Syu</code>, Discover, GNOME Software) keep them current.
   Available now: <strong>LinX</strong>. Jawjack and Haiwire are coming.</p>
   <p class="note">Signing key fingerprint: <code>E72D 6EE9 C417 012E CE28 0124 E14B 8780 7621 D25D</code></p>
   <h3>Fedora</h3>
@@ -109,6 +109,12 @@ sudo dnf install linx</code></pre>
 sudo curl -fsSLo /etc/apt/sources.list.d/joenilan-apps.sources https://joenilan.github.io/packages/joenilan-apps.sources
 sudo apt update
 sudo apt install linx</code></pre>
+  <h3>Arch Linux</h3>
+  <pre><code>curl -fsSL https://joenilan.github.io/packages/joenilan-apps.asc | sudo pacman-key --add -
+sudo pacman-key --lsign-key E72D6EE9C417012ECE280124E14B87807621D25D
+curl -fsSL https://joenilan.github.io/packages/joenilan-apps.pacman.conf | sudo tee -a /etc/pacman.conf
+sudo pacman -Sy linx</code></pre>
+  <p class="note">The repository is also mirrored at <code>apps.zombie.digital/downloads/packages</code>; the repository files list both, so updates keep working if one host is down.</p>
 
   <footer>© joenilan · <a href="https://github.com/joenilan">github.com/joenilan</a> · <a href="https://zombie.digital">zombie.digital</a></footer>
 </main>

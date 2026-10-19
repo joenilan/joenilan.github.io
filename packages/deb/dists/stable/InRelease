@@ -8,17 +8,17 @@ Codename: stable
 Architectures: amd64
 Components: main
 Description: Apps by joenilan (DreadedZombie)
-Date: Mon, 19 Oct 2026 12:42:49 UTC
+Date: Mon, 19 Oct 2026 14:54:54 UTC
 MD5Sum:
- cacc15a511b91ba40a0029ea4681b35c 1095 main/binary-amd64/Packages
- a845e6c7682f183938fff3c1a9413b9d 690 main/binary-amd64/Packages.gz
+ 05ccb640d6f7f027800bc0b292e64fae 2193 main/binary-amd64/Packages
+ 07cef4038bc89cda7dfcbed5e1b7a99d 819 main/binary-amd64/Packages.gz
 SHA256:
- bf2702f01d517940c509e905dec2c203aeb4bc31b15230f6ebfb510509b821ba 1095 main/binary-amd64/Packages
- 81b3b1260dfac4e347898feff33970dbe3a5b4082e67b9b106f90a3b89e67af0 690 main/binary-amd64/Packages.gz
+ 9523e0e53be1da05b0f3c968f177b9dcf9071c31df60d9f0de5d145420a0235f 2193 main/binary-amd64/Packages
+ 478f23de8b5bd98d2e14aa1374cbffc5e9625f1e2414cc7a9cd486a13304ce37 819 main/binary-amd64/Packages.gz
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQTnLW7pxBcBLs4oASThS4eAdiHSXQUCatYQSQAKCRDhS4eAdiHS
-XTF1AP4oPfNC4lqfdIWjmkYZ71wpRP59/0yqwkEN0LHkXfc8ZQEA6IzZ7pFWorf7
-FRueUPfAb5Y/+ffa3A7ewbSXeKzzNg0=
-=D1Rm
+iHUEARYKAB0WIQTnLW7pxBcBLs4oASThS4eAdiHSXQUCatYvPgAKCRDhS4eAdiHS
+XZKlAP9P76xij8xlCtoLHw6/YCcuJpt5ZPpDNTwyYp6vaUwHjgD+MIr7xLQ80Hqw
+cMa6TVeva5DqLfOEXYVlvWmXu3hVkAs=
+=crDh
 -----END PGP SIGNATURE-----

@@ -244,10 +244,12 @@ Server = $BASE_URL/arch/\$arch
 Server = $MIRROR_URL/arch/\$arch
 EOF
 ARCH_DIR="$REPO/arch/x86_64"
+# repo-add keeps the last version given for a name: oldest first (sort -V),
+# so 0.1.11 wins over 0.1.9.
 rm -f "$ARCH_DIR"/joenilan-apps.{db,files}*
 if compgen -G "$ARCH_DIR/*.pkg.tar.zst" >/dev/null; then
   podman run --rm --security-opt label=disable -v "$ARCH_DIR":/repo docker.io/library/archlinux:latest \
-    bash -c 'repo-add -q /repo/joenilan-apps.db.tar.gz /repo/*.pkg.tar.zst'
+    bash -c 'mapfile -t pkgs < <(printf "%s\n" /repo/*.pkg.tar.zst | sort -V); repo-add -q /repo/joenilan-apps.db.tar.gz "${pkgs[@]}"'
   # Plain copies instead of repo-add's symlinks (served as files everywhere).
   for name in db files; do
     rm -f "$ARCH_DIR/joenilan-apps.$name"

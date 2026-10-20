@@ -5,10 +5,10 @@ Codename: stable
 Architectures: amd64
 Components: main
 Description: Apps by joenilan (DreadedZombie)
-Date: Tue, 20 Oct 2026 13:05:39 UTC
+Date: Tue, 20 Oct 2026 13:28:17 UTC
 MD5Sum:
- a550a09fe27eb0ce12fa7995a2ee2d4f 3135 main/binary-amd64/Packages
- b3980298166788f9240c9d95f957aafb 1154 main/binary-amd64/Packages.gz
+ 656e8bdc3d101980ec1e093c85cea245 4113 main/binary-amd64/Packages
+ d21a08921075ef9f3c5a254f79c483ca 1447 main/binary-amd64/Packages.gz
 SHA256:
- 2e3ffec43e3f262cf4ee13ba11b8d56543a6edcf501e6be01b45bf969602feb9 3135 main/binary-amd64/Packages
- a1c174e8ca170c57b49a2c7e4627d8aac15ffc5f2f2011fc6494c4cee1b0c4f2 1154 main/binary-amd64/Packages.gz
+ 0ddd25803882ac2cc69c106517aeb779f0f4077d488628015adea5fb1b18d4f2 4113 main/binary-amd64/Packages
+ a0404f12709c62d9a56e29aa322b30eb9b1b25994a8043b7278d3113ab8e920f 1447 main/binary-amd64/Packages.gz

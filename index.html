@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>joenilan · apps</title>
-<meta name="description" content="Apps by joenilan (DreadedZombie): LinX, Jawjack, Haiwire, Slotshift and more, with signed Linux package repositories.">
+<meta name="description" content="Apps by joenilan (DreadedZombie): LinX, Wavelane, Jawjack, Haiwire, Slotshift and more, with signed Linux package repositories.">
 <style>
   :root {
     --bg: #f6f7f9; --panel: #ffffff; --text: #16191d; --muted: #5b6470;
@@ -69,6 +69,16 @@
       </div>
     </article>
     <article class="card">
+      <h3>Wavelane</h3>
+      <div class="tags"><span class="tag">Linux</span><span class="tag open">Open source</span></div>
+      <p>See where every app's sound goes, and drag it onto any output: a sound map over your screen, with per-app volume from the tray.</p>
+      <div class="links">
+        <a href="https://github.com/joenilan/wavelane">GitHub</a>
+        <a href="https://github.com/joenilan/wavelane/releases">Releases</a>
+        <a href="#packages">dnf / apt</a>
+      </div>
+    </article>
+    <article class="card">
       <h3>Jawjack</h3>
       <div class="tags"><span class="tag">Windows</span><span class="tag">Linux</span></div>
       <p>A native chat client for streamers, moderators and viewers, covering Twitch and YouTube live chat.</p>
@@ -102,8 +112,8 @@
   <h2 id="packages">Linux package repository</h2>
   <p>One signed repository for all of these apps: install once, then your system's normal updates
   (<code>dnf upgrade</code>, <code>apt upgrade</code>, <code>pacman -Syu</code>, Discover, GNOME Software) keep them current.
-  Available now: <strong>LinX</strong> (<code>linx</code>) and <strong>Jawjack</strong> (<code>jawjack</code>). Haiwire is coming.
-  The commands below install Jawjack; use <code>linx</code> instead for LinX.</p>
+  Available now: <strong>LinX</strong> (<code>linx</code>), <strong>Wavelane</strong> (<code>wavelane</code>) and <strong>Jawjack</strong> (<code>jawjack</code>). Haiwire is coming.
+  The commands below install Jawjack; use <code>linx</code> or <code>wavelane</code> instead for those.</p>
   <p class="note">Signing key fingerprint: <code>E72D 6EE9 C417 012E CE28 0124 E14B 8780 7621 D25D</code></p>
   <h3>Fedora</h3>
   <pre><code>sudo dnf config-manager addrepo --from-repofile=https://joenilan.github.io/packages/joenilan-apps.repo

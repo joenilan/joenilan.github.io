@@ -30,7 +30,8 @@ scripts/publish-packages.sh <app>.rpm <app>.deb <app>.pkg.tar.zst
 That signs what needs signing (RPMs, Arch packages, all repository metadata;
 gpg-agent asks for the key's passphrase), keeps the newest three versions,
 commits and pushes this site, and mirrors `packages/` to apps.zombie.digital.
-Wired in today: LinX (`packaging/publish-repo.sh`), Jawjack and Haiwire
+Wired in today: LinX (`packaging/publish-repo.sh`), Wavelane
+(`packaging/publish.sh`), Jawjack and Haiwire
 (`scripts/Publish-Linux.py --publish`).
 
 Package conventions: install to `/usr`, desktop file named after the app ID,

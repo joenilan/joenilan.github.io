@@ -8,7 +8,7 @@ Codename: stable
 Architectures: amd64
 Components: main
 Description: Apps by joenilan (DreadedZombie)
-Date: Sat, 24 Oct 2026 13:27:06 UTC
+Date: Sat, 24 Oct 2026 13:30:23 UTC
 MD5Sum:
  21999d9d20bb6056c5daca7e2a1b06d9 8143 main/binary-amd64/Packages
  291493dde1723c1475d656a18254d473 2130 main/binary-amd64/Packages.gz
@@ -17,8 +17,8 @@ SHA256:
  771556717ee34969263d8c480770f8f40002d1c9357542a014bc841edee3e601 2130 main/binary-amd64/Packages.gz
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQTnLW7pxBcBLs4oASThS4eAdiHSXQUCatyyKgAKCRDhS4eAdiHS
-XXYAAP4zDu/gXP9i7V8dw0bofKFFCOE3JEvnwz38r65lGqs3NgEA3DReEI+08jPV
-CdIFZ7Z1jXx3SBScIzSV06WDQzfzfQ4=
-=oAAz
+iHUEARYKAB0WIQTnLW7pxBcBLs4oASThS4eAdiHSXQUCatyy7wAKCRDhS4eAdiHS
+XSfOAP9jiPIyzDUA4UYYIw7qsvYCtj+py4WDkGS7YYAapcS6BwEAjaBfQ+AtoZt4
+WoO1qywnlRsyBU775x8qIie2cJ00MA4=
+=WkLf
 -----END PGP SIGNATURE-----

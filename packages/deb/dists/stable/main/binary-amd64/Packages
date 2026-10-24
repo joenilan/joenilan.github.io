@@ -58,6 +58,26 @@ MD5sum: dfafec2bf50fb665b179477837f50cf1
 SHA1: 532b0de6140f3ba0e9a11231bf2549bb3766cecd
 SHA256: 7fa10476e5a779437034d46073ec8d6063451d59872001385bf72e8a90d024e1
 
+Package: jawjack
+Version: 0.1.0~preview.33-1
+Architecture: amd64
+Maintainer: DreadedZombie <joenilan+dev@gmail.com>
+Installed-Size: 72816
+Depends: libasound2t64 (>= 1.0.29), libc6 (>= 2.39), libgcc-s1 (>= 4.2), libxcb1 (>= 1.12), libxkbcommon-x11-0 (>= 0.5.0), libxkbcommon0 (>= 0.5.0), libvulkan1, libwayland-client0, libxkbcommon-x11-0, libxcb1
+Recommends: gnome-keyring, xdg-utils, mesa-vulkan-drivers
+Suggests: streamlink
+Section: net
+Priority: optional
+Homepage: https://apps.zombie.digital/jawjack
+Description: Native Twitch and YouTube chat client
+ Jawjack is a native Twitch and YouTube chat client. Sign-ins are kept in
+ the desktop Secret Service. Updates come from your package manager.
+Filename: pool/main/j/jawjack/jawjack_0.1.0~preview.33-1_amd64.deb
+Size: 24662360
+MD5sum: d96a3fca280f6ff885815003a64c4dfa
+SHA1: 6aef057d175e1bfb141e2be3641a7905576f541c
+SHA256: 7f4f71d1c78a590b097737b59d3b578e0137d3a72c8b88b697f3a1c7c7631625
+
 Package: linx
 Version: 0.1.10-1
 Architecture: amd64

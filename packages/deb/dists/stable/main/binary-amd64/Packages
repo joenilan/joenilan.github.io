@@ -38,6 +38,26 @@ MD5sum: 6c8d9ebd6c2a87e134c4e00cde795a36
 SHA1: fd20642050ed5a0aba98e087531c89792a91aafb
 SHA256: 7640fa95908ca1c81cab1d270381d6aa934c68277b5187d6d57adb3396105f19
 
+Package: haiwire
+Version: 0.1.0~preview.39-1
+Architecture: amd64
+Maintainer: DreadedZombie <joenilan+dev@gmail.com>
+Installed-Size: 163756
+Depends: libc6 (>= 2.39), libgcc-s1 (>= 12), libxcb1 (>= 1.12), libxkbcommon-x11-0 (>= 0.5.0), libxkbcommon0 (>= 0.5.0), libvulkan1, libwayland-client0, libwayland-egl1, curl, libsecret-tools
+Recommends: git, mesa-vulkan-drivers, gnome-keyring
+Section: devel
+Priority: optional
+Homepage: https://apps.zombie.digital/haiwire
+Description: Native terminal-first coding workspace
+ Haiwire is a native GPU-rendered terminal and AI coding workspace with a
+ persistent interactive terminal. This copy is managed by your package
+ manager and never updates itself. Proprietary; free to download and use.
+Filename: pool/main/h/haiwire/haiwire_0.1.0~preview.39-1_amd64.deb
+Size: 38135664
+MD5sum: ea0b5ada5139252b4204774e8afda46d
+SHA1: 5d17527933b02320eda3add72179c47bb52cb493
+SHA256: aa129cc321a135f4e7f65b180dfb2a2fdd19f7ae31885049c7ba8d1989954a00
+
 Package: jawjack
 Version: 0.1.0~preview.32-1
 Architecture: amd64

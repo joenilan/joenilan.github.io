@@ -8,17 +8,17 @@ Codename: stable
 Architectures: amd64
 Components: main
 Description: Apps by joenilan (DreadedZombie)
-Date: Fri, 30 Oct 2026 01:15:09 UTC
+Date: Fri, 30 Oct 2026 12:47:24 UTC
 MD5Sum:
- cc131f56fb9e7538f088504c03f5dbee 10171 main/binary-amd64/Packages
- e5bd039a00c3da4d0597b324f4c27eb4 2383 main/binary-amd64/Packages.gz
+ ed9369b3206a49eb83a000db0c7f5db9 11149 main/binary-amd64/Packages
+ 52da3022499596de2fad48364daa96be 2504 main/binary-amd64/Packages.gz
 SHA256:
- 1401b1581002a0f43b8b044d117a67a6e66840a141429a943892d5d7b638ff2b 10171 main/binary-amd64/Packages
- 56aa4ab56857c38eb84156bdd04f00202c28b5379b9b10226ffaf224d0ab0536 2383 main/binary-amd64/Packages.gz
+ 86a4a8c9c75530f772c70b1ea11751fa05b28d92018f40f4c9dfb056d22087c5 11149 main/binary-amd64/Packages
+ 1767fead796c1986fc21240851f14daf6529fb2b478a64e365292d47a26486f0 2504 main/binary-amd64/Packages.gz
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQTnLW7pxBcBLs4oASThS4eAdiHSXQUCauPvnQAKCRDhS4eAdiHS
-XbZIAQCi1bSn0s7QFrHf+16HBVoAQyNfkSeGkc//H1vlgwggOAD/ZkPTxI4xYMX2
-EvwqAVlM7+VM01/9u8/kCJbijjTg5Qg=
-=R6mK
+iHUEARYKAB0WIQTnLW7pxBcBLs4oASThS4eAdiHSXQUCauSR3AAKCRDhS4eAdiHS
+XapAAQDMc2yeoyDX9RS5firqBl09R5I2i7i6wci9pwriF57IrgD5AfVpMXgSFluU
+2DRHTEHeOrS+nuBDF7AKCyWRMX/99Aw=
+=iJPX
 -----END PGP SIGNATURE-----

@@ -160,3 +160,23 @@ Size: 13130088
 MD5sum: 922f079d58b86f0847fa52d383be433f
 SHA1: c8311992d1d6731c1c04e6eb600b07b044ad9adf
 SHA256: 14f4ab8e2c1c2f14765a0e967fcafaef3eb48666ae3adb62742aa257b8b07f35
+
+Package: wavelane
+Version: 0.1.1-1
+Architecture: amd64
+Maintainer: DreadedZombie <joenilan+dev@gmail.com>
+Depends: libc6 (>= 2.39), libgcc-s1 (>= 4.2), libpipewire-0.3-0t64 (>= 0.3.8), libxcb1 (>= 1.12), libxkbcommon-x11-0 (>= 0.5.0), libxkbcommon0 (>= 0.5.0), libvulkan1, libwayland-client0, libwayland-egl1, pipewire (>= 1.0), wireplumber
+Recommends: mesa-vulkan-drivers
+Section: sound
+Priority: optional
+Homepage: https://github.com/joenilan/wavelane
+Description: See where every app's sound goes, and drag it onto any output
+ Wavelane lives in the tray and shows every application that plays sound on
+ a map over the screen: drag one onto any output (speakers, headphones, a
+ GoXLR or Rode channel, a virtual device) and it plays there from now on.
+ The tray flyout sets each application's volume and output.
+Filename: pool/main/w/wavelane/wavelane_0.1.1-1_amd64.deb
+Size: 13101896
+MD5sum: c1f1df353b474aa6f8b700725ebe90ab
+SHA1: 30c39a38a7d51be4c36c1cd66782b445dd74ea8c
+SHA256: 4a4de7c468eec702430a89d8d16ad36e2fb9a53a2fbc2cf84b3f7026b817f8ad

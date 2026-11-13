@@ -59,26 +59,6 @@ SHA1: ae2873f46b56ca29c3da12386b4849ce8ae3ea52
 SHA256: b9be6c699610c402fe3df1a3f0d303fedce97accdecdb2e9fc07142e6f577172
 
 Package: jawjack
-Version: 0.1.0~preview.32-1
-Architecture: amd64
-Maintainer: DreadedZombie <joenilan+dev@gmail.com>
-Installed-Size: 72752
-Depends: libasound2t64 (>= 1.0.29), libc6 (>= 2.39), libgcc-s1 (>= 4.2), libxcb1 (>= 1.12), libxkbcommon-x11-0 (>= 0.5.0), libxkbcommon0 (>= 0.5.0), libvulkan1, libwayland-client0, libxkbcommon-x11-0, libxcb1
-Recommends: gnome-keyring, xdg-utils, mesa-vulkan-drivers
-Suggests: streamlink
-Section: net
-Priority: optional
-Homepage: https://apps.zombie.digital/jawjack
-Description: Native Twitch and YouTube chat client
- Jawjack is a native Twitch and YouTube chat client. Sign-ins are kept in
- the desktop Secret Service. Updates come from your package manager.
-Filename: pool/main/j/jawjack/jawjack_0.1.0~preview.32-1_amd64.deb
-Size: 24656760
-MD5sum: dfafec2bf50fb665b179477837f50cf1
-SHA1: 532b0de6140f3ba0e9a11231bf2549bb3766cecd
-SHA256: 7fa10476e5a779437034d46073ec8d6063451d59872001385bf72e8a90d024e1
-
-Package: jawjack
 Version: 0.1.0~preview.33-1
 Architecture: amd64
 Maintainer: DreadedZombie <joenilan+dev@gmail.com>
@@ -117,6 +97,26 @@ Size: 24629684
 MD5sum: 5aea4afcd87076a14df560db62eeae05
 SHA1: f7fa3ecd43c1bfbcc6ff4c63a6ddfea89a4f1ced
 SHA256: 7bcc4f44a4817a4af1ed186bd491df99230ea0d0cb40f163372ee5230e1d56d3
+
+Package: jawjack
+Version: 0.1.0~preview.37-1
+Architecture: amd64
+Maintainer: DreadedZombie <joenilan+dev@gmail.com>
+Installed-Size: 73864
+Depends: libasound2t64 (>= 1.0.29), libc6 (>= 2.39), libgcc-s1 (>= 4.2), libxcb1 (>= 1.12), libxkbcommon-x11-0 (>= 0.5.0), libxkbcommon0 (>= 0.5.0), libvulkan1, libwayland-client0, libxkbcommon-x11-0, libxcb1
+Recommends: gnome-keyring, xdg-utils, mesa-vulkan-drivers
+Suggests: streamlink
+Section: net
+Priority: optional
+Homepage: https://apps.zombie.digital/jawjack
+Description: Native Twitch and YouTube chat client
+ Jawjack is a native Twitch and YouTube chat client. Sign-ins are kept in
+ the desktop Secret Service. Updates come from your package manager.
+Filename: pool/main/j/jawjack/jawjack_0.1.0~preview.37-1_amd64.deb
+Size: 24980564
+MD5sum: cb9d9edbdc00b08640aafe18995cd534
+SHA1: 027946216c4c26db8d1633437720e6f4ac47c227
+SHA256: 9d535ae8762a31a211382d479ab3b8bae1dbf03aa273cbf32e25d71a212b6a7e
 
 Package: linx
 Version: 0.1.10-1
